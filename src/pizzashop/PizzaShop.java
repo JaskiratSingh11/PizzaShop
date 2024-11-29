@@ -16,32 +16,27 @@ import java.util.Scanner;
  * @author dancye, 2019
  */
 public class PizzaShop {
-
-   public static PizzaCutter pizzaCutter = new PizzaCutter();//we only ever want one 
-   // of these. The pizza shop takes consistency very seriously
-   //and all pizzas must be cut by the same cutter.
-    public static void main(String[] args) 
-    {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the pizza shop");
         System.out.println("What kind of pizza do you want?");
         System.out.println("Please enter exactly cheese or pepperoni");
         String type = sc.nextLine();
-        PizzaFactory pf = new PizzaFactory();
+
+        // Declare and initialize the factory as its interface type
+        PizzaFactory.PizzaFactoryInterface pf = new PizzaFactory.ConcretePizzaFactory();
         Pizza pizza = pf.createPizza(type);
+
         System.out.println("how many slices would you like?");
         int numSlices = sc.nextInt();
-        pizzaCutter.numSlices = numSlices;
-        if (pizza!=null)
-        {
+
+        PizzaCutter cutter = PizzaCutter.getInstance();
+        cutter.numSlices = numSlices;
+
+        if (pizza != null) {
             System.out.println("Great job, here is your pizza in " + numSlices + " slices");
-            
-        }
-        else
-        {
+        } else {
             System.out.println("Enter a valid pizza type so we can cut it next time!");
         }
-        
-    }//end main
-    
+    }
 }

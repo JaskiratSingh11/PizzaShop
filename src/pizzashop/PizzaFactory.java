@@ -13,24 +13,24 @@ package pizzashop;
  * Freeman, E.Freeman, E., Sierra, K., & Bates, B. (2004). Head First Design patterns. Sebastopol, CA: O'Reilly.
  * @author dancye
  */
-class PizzaFactory 
-{
-    /**
-     * returns a concrete pizza object
-     * @param type the type of pizza to return
-     * @return 
-     */
-    public Pizza createPizza(String type)
-    {
-        Pizza pizza = null;
-        if(type.equals("cheese"))
-        {
-            pizza = new CheesePizza();
-        }
-        else if (type.equals("pepperoni"))
-        {
+public class PizzaFactory {
+
+    // Define a nested interface for the factory
+    public interface PizzaFactoryInterface {
+        Pizza createPizza(String type);
+    }
+
+    // Concrete implementation of the interface
+    public static class ConcretePizzaFactory implements PizzaFactoryInterface {
+        @Override
+        public Pizza createPizza(String type) {
+            Pizza pizza = null;
+            if (type.equals("cheese")) {
+                pizza = new CheesePizza();
+            } else if (type.equals("pepperoni")) {
                 pizza = new PepperoniPizza();
+            }
+            return pizza;
         }
-        return pizza;
     }
 }

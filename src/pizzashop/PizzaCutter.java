@@ -16,11 +16,19 @@ package pizzashop;
  * Freeman, E.Freeman, E., Sierra, K., & Bates, B. (2004). Head First Design patterns. Sebastopol, CA: O'Reilly.
  * @author dancye
  */
-public class PizzaCutter 
-{
-    public int numSlices = 0;// how many pieces to cut the pizza into
-    public PizzaCutter()
-    {
-        //intentionally left blank
+public class PizzaCutter {
+    private static PizzaCutter instance;
+    public int numSlices = 0; // how many pieces to cut the pizza into
+
+    
+    private PizzaCutter() {
+    }
+
+   
+    public static PizzaCutter getInstance() {
+        if (instance == null) {
+            instance = new PizzaCutter();
+        }
+        return instance;
     }
 }
